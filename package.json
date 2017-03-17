@@ -1,0 +1,31 @@
+{
+  "name": "rss-bango",
+  "version": "1.0.0",
+  "description": "subscribe xx",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rss"
+  ],
+  "author": "ecat",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ecator/rss-bango.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cheerio": "^0.22.0",
+    "cookie-parser": "^1.4.3",
+    "eventproxy": "^0.3.5",
+    "express": "^4.15.2",
+    "moment": "^2.17.1",
+    "multer": "^1.3.0",
+    "mysql": "^2.13.0",
+    "superagent": "^3.5.0",
+    "url": "^0.11.0",
+    "xml2js": "^0.4.17"
+  }
+}

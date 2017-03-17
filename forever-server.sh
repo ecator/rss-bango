@@ -1,0 +1,1 @@
+forever start -p ./ -l ./log/server.log -o ./log/server-out.log -e ./log/server-err.log -a server.js

@@ -1,0 +1,1 @@
+forever start -p ./ -l ./log/spider.log -o ./log/spider-out.log -e ./log/spider-err.log -a spider.js
