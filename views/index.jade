@@ -1,0 +1,29 @@
+extends layout
+block head
+	link(rel='stylesheet', href='/css/index.css')
+	script(src="/js/jquery.lazyload.min.js")
+	script(src="/js/indexready.js")
+block body
+	.container-fluid
+		table.table.table-striped.table-condensed.table-responsive
+			tr
+				each val in ["index","code","title","Download","img","maker","series","time","tags","date"]
+					th=val
+			-var count=1
+			each detail in items
+				tr
+					td=count++
+					td=detail.code
+					td=detail.title
+					td
+						a.btn.btn-link.btn-sm(href="https://www.torrentkitty.tv/search/#{detail.code}",target="_blank") Search
+					td
+						img.lazyload(src="/img/loading.gif",data-original="#{detail.img}",data-detail="/bango/#{detail.code}",alt="#{detail.title}")
+					td=detail.maker
+					td=detail.series
+					td=detail.time+"mins"
+					td
+						-var tags=detail.tag.split(",")
+							each tag in tags
+								span.badge=tag
+					td=detail.date

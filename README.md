@@ -2,7 +2,7 @@
 subscribe xx
 
 # server.js
-run a rss-service on port 21111,feed link:yourhostname(or ip)/feed
+run a rss-service on port 1111,feed link is yourhostname(or ip)/feed
 
 # spider.js
 a spider that catch bango from a site you know
@@ -12,5 +12,10 @@ a spider that catch bango from a site you know
 ```
 node spider [maxPageNum pageInterval detailInterval] 
 ```
+
+# others
+
+## forever-server.sh/forever-spider.sh
+run server.js/spider.js using forever as daemon
 
 have a good time :smile:

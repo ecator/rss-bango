@@ -1,0 +1,30 @@
+extends layout
+block head
+block body
+	.container
+		h3=item.title
+		p
+			img(src="#{item.img}",alt="#{item.title}")
+		p
+			dl.dl-horizontal
+				dt code
+				dd=item.code
+				dt time
+				dd=item.time+"mins"
+				dt maker
+				dd=item.maker
+				dt series
+				dd=item.series
+				dt date
+				dd=item.date
+				dt tags
+				dd
+					-var tags=item.tag.split(",")
+						each tag in tags
+							span.badge=tag
+				dt source
+				dd
+					a(href="#{item.url}",target="_blank")=item.url
+				dt download
+				dd
+					a(href="https://www.torrentkitty.tv/search/#{item.code}",target="_blank") search #{item.code} in torrentkitty

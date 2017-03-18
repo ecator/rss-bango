@@ -1,0 +1,28 @@
+table{
+    width: 98%;
+    margin: 10px auto;
+    border: 1px black solid;
+    border-spacing: 0;
+}
+th,td{
+    border-bottom: solid 1px red;
+    border-right: solid 1px gray;
+}
+tr:last-child td{
+    border-bottom: none;
+}
+th:last-child,td:last-child{
+    border-right: none;
+}
+/* 奇数列 */
+tr:nth-child(2n+1){
+    background-color: #C5DDDF;
+}
+/* 偶数列 */
+tr:nth-child(2n){
+    background-color: #D4E3E6;
+}
+th{
+    border-bottom:double 3px black;
+    background-color: #C5DDDF;
+}
