@@ -16,7 +16,7 @@ block body
 					td=detail.code
 					td=detail.title
 					td
-						a.btn.btn-link.btn-sm(href="https://www.torrentkitty.tv/search/#{detail.code}",target="_blank") Search
+						a.btn.btn-link.btn-sm(href="#{torrentkittyBase}#{detail.code}",target="_blank") Search
 					td
 						img.lazyload(src="/img/loading.gif",data-original="#{detail.img}",data-detail="/bango/#{detail.code}",alt="#{detail.title}")
 					td=detail.maker

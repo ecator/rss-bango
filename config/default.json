@@ -1,0 +1,16 @@
+{
+	"env":"development",
+	"mysql":{
+		"host":"localhost",
+		"host":"localhost",       
+  		"user":"root",              
+  		"password": "123456",       
+  		"port":"3306",                   
+  		"database": "bango",
+  		"dateStrings":true
+	},
+	"torrentkittyBase":"https://www.torrentkitty.tv/search/",
+	"home":"http://localhost",
+	"port":"1111",
+	"baseurl":"https://avso.pw/ja/page/"
+}

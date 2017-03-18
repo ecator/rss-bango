@@ -11,7 +11,7 @@
 .thumb:hover{
 	position: absolute;
 	cursor: pointer;
-	zoom:3;
+	width: 540px;
 }
 th:last-child{
 	width: 90px;

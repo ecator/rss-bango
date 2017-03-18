@@ -1,1 +1,4 @@
-console.log(process.argv.splice(2))
+'use strict';
+var config=require('config');
+console.log(config);
+// console.log(process.env);

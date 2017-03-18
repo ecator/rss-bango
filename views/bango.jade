@@ -2,10 +2,10 @@ extends layout
 block head
 block body
 	.container
-		h3=item.title
-		p
-			img(src="#{item.img}",alt="#{item.title}")
-		p
+		h3.text-center=item.title
+		p.text-center
+			img(width="90%",src="#{item.img}",alt="#{item.title}")
+		p.text-left
 			dl.dl-horizontal
 				dt code
 				dd=item.code
@@ -27,4 +27,4 @@ block body
 					a(href="#{item.url}",target="_blank")=item.url
 				dt download
 				dd
-					a(href="https://www.torrentkitty.tv/search/#{item.code}",target="_blank") search #{item.code} in torrentkitty
+					a(href="#{torrentkittyBase}#{item.code}",target="_blank") search #{item.code} in torrentkitty
