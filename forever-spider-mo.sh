@@ -1,0 +1,1 @@
+forever start -p ./ -l ./log/spider-mo.log -o ./log/spider-mo-out.log -e ./log/spider-mo-err.log -a spider.js 2 3600 10 mo

@@ -10,7 +10,7 @@ a spider that catch bango from a site you know
 ## usage
 
 ```
-node spider [maxPageNum pageInterval detailInterval] 
+node spider [maxPageNum pageInterval detailInterval mo] 
 ```
 
 # others

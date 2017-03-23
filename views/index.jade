@@ -4,26 +4,26 @@ block head
 	script(src="/js/jquery.lazyload.min.js")
 	script(src="/js/indexready.js")
 block body
-	.container-fluid
-		table.table.table-striped.table-condensed.table-responsive
-			tr
-				each val in ["index","code","title","Download","img","maker","series","time","tags","date"]
-					th=val
-			-var count=1
-			each detail in items
-				tr
-					td=count++
-					td=detail.code
-					td=detail.title
-					td
-						a.btn.btn-link.btn-sm(href="#{torrentkittyBase}#{detail.code}",target="_blank") Search
-					td
-						img.lazyload(src="/img/loading.gif",data-original="#{detail.img}",data-detail="/bango/#{detail.code}",alt="#{detail.title}")
-					td=detail.maker
-					td=detail.series
-					td=detail.time+"mins"
-					td
-						-var tags=detail.tag.split(",")
-							each tag in tags
-								span.badge=tag
-					td=detail.date
+	//rss按钮
+	.rss#rss1(data-title="bango")
+	.rss#rss2(data-title="bango-mo")
+	//TOP按钮
+	button#to-top.button-small.button.button-glow.button-circle.button-action.button-jumbo TOP
+	.container
+		form.form-horizontal.search(onsubmit="$('#search').click()")
+			.form-group
+				.col-sm-8.col-sm-offset-1.col-xs-12
+					input.form-control(value="#{query}",id="query",placeholder="space to separate")
+				.col-sm-2.col-sm-offset-0.col-xs-12
+					input.btn.btn-default.btn-block#search(type="button",value="search")
+	.waterfall
+		each item in items
+			.movie-box.thumbnail.hide(data-detail="/detail/#{item.code}")
+					img.lazyload(data-original="#{item.img}",src="/img/loading.gif")
+					.caption
+						h4=item.title
+							span.small=item.date
+							//标注有码
+							if item.pre
+								br
+								span.badge mosaic

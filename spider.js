@@ -5,8 +5,6 @@ var bangoDB=require('./lib/bangodb');
 var config=require('config');
 var url=require("url");
 var bangodb=new bangoDB();
-//页面基础地址
-var baseurl=config.get("baseurl");
 var urlCount=0;	//开始页面计数
 //解析传递过来的最大页面参数
 var params=process.argv.splice(2);
@@ -16,12 +14,25 @@ var urlCountMax=params[0] || 2;
 var intervalDetail=params[2] || 60;
 //主页面间隔*秒
 var intervalPage=params[1] || 3600;
+//是否抓取有码网站 mo
+if (params[3]=='mo') {
+	//页面基础地址
+	var baseurl=config.get("baseurl_mo");
+	//定义写入数据表名
+	var detail_table="detail_mo";
+}else{
+	//页面基础地址
+	var baseurl=config.get("baseurl");
+	//定义写入数据表名
+	var detail_table="detail";
+}
 bangodb.connect();
-bangodb.getLastPage(function(last){
+bangodb.getLastPage(baseurl,function(last){
 	console.log("上次抓取到页面："+last);
 	console.log("抓取最大页面："+urlCountMax);
 	console.log("主页面间隔："+intervalPage+"秒");
 	console.log("详情页面间隔："+intervalDetail+"秒");
+	console.log("保存数据表："+detail_table);
 	urlCount=Number(last);
 	bangodb.disConnect();
 	beginSpider();
@@ -53,7 +64,7 @@ function beginSpider(){
 		console.time(targetUrl+'写入时间');
 		//写入数据库
 		bangodb.connect();
-		bangodb.add(mvs,function(res){
+		bangodb.add(mvs,detail_table,function(res){
 			//一次数据抓取流程全部完毕后执行本回调
 			res=res[res.length-1];
 			console.log(targetUrl+"成功：%s",res.success);
@@ -76,12 +87,19 @@ function beginSpider(){
 			//时间单位为分，需要替换掉多余字符
 			mv.time=$('.info p').eq(2).text().replace('収録時間:','').replace('分','').trim();
 			mv.maker=$('.info p').eq(4).find('a').text();
-			mv.series=$('.info p').eq(6).find('a').text();
 			mv.tags=[];
 			//遍历出分类标签
 			$('.info .genre').find('a').each(function(){
 				mv.tags.push($(this).text());
 			});
+			//如果是抓取有码mo网站则遍历出预览图片
+			if(params[3]=='mo'){
+				mv.pre=[];
+				$("#sample-waterfall").find(".sample-box").each(function(){
+				mv.pre.push($(this).attr("href"));
+			});
+			}
+			// console.log(mv);
 			mvs.push(mv);
 			mvCount++;
 			if (mvCount==movies.length) {

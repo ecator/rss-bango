@@ -12,5 +12,6 @@
 	"torrentkittyBase":"https://www.torrentkitty.tv/search/",
 	"home":"http://localhost",
 	"port":"1111",
-	"baseurl":"https://avso.pw/ja/page/"
+	"baseurl":"https://avso.pw/ja/page/",
+	"baseurl_mo":"https://avmo.pw/ja/page/"
 }

@@ -1,18 +1,67 @@
-.thumb{
-	width: 180px;
+.waterfall{
+	position: relative;
+	/*border:red 1px solid;*/
+	height: 100px;
+	width: 90%;
+	padding: 0px 0px;
+	margin: 10px auto;
 }
-.lazyload{
-	display: block;
-	cursor: pointer;
-	width: 50px;
-	height: 50px;
-	margin: 0 auto;
-}
-.thumb:hover{
+.movie-box{
 	position: absolute;
+	margin: 0px 0px;
 	cursor: pointer;
-	width: 540px;
+	/*border: 1px red solid;*/
 }
-th:last-child{
-	width: 90px;
+.hide{
+	display: none;
+}
+#to-top{
+	position: fixed;
+	opacity: 0;
+	top: 100px;
+	z-index: 10;
+}
+.search{
+	margin-top: 20px;
+}
+/*rss按钮*/
+.rss{
+	position: fixed;
+	width: 20px;
+	height: 20px;
+	/*border: 1px red solid;*/
+}
+.rss:hover{
+	cursor: pointer;
+}
+.rss:hover::after {
+    content: attr(data-title);    //取到data-title属性的值
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    position: fixed;
+    top: 30px;
+    left: 0px;
+    z-index: 100;
+}
+#rss1{
+	background-image: url('../img/rss.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	top: 5px;
+	left: 5px;
+}
+#rss2{
+	background-image: url('../img/rss-mo.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	top: 5px;
+	left: 30px;
+}
+@media(max-width: 768px){
+	.rss{
+		display: none;
+	}
 }

@@ -1,12 +1,13 @@
 'use strict';
 var express=require('express');
-var bangoDB=require('./lib/bangodb');
-var feed=require('./lib/feed');
 var ipdb=require('./lib/ipdb/ip');
 var moment=require('moment');
 var config=require("config");
 var fs=require('fs');
-var bangodb=new bangoDB();
+//加载路由
+var index=require("./routes/index");
+var detail=require("./routes/detail");
+var feed=require("./routes/feed");
 var app=express();
 app.use(express.static('public'));
 app.set("views","./views");
@@ -37,37 +38,11 @@ app.use(function(request,response,next){
         }
 });
 //首页索引路由
-app.get("/",function(request,response){
-    bangodb.connect();
-    bangodb.get(3000,function(res){
-        response.locals.torrentkittyBase=config.get("torrentkittyBase");
-        response.render('index',{title:"bango × "+res.length,items:res});
-        bangodb.disConnect();
-    });
-});
+app.use("/",index);
 //番号详情页面
-app.get("/bango/:code",function(request,response){
-    bangodb.connect();
-    bangodb.searchByCode(request.params.code,function(res){
-        if (res.length) {
-            response.locals.torrentkittyBase=config.get("torrentkittyBase");
-            response.render('bango',{title:res[0].title,item:res[0]});
-            bangodb.disConnect();
-        }else{
-            response.status(404).end();
-        }
-    });
-});
+app.use("/detail",detail);
 //rss订阅路由
-app.get("/feed",function(request,response){
-	bangodb.connect();
-	bangodb.get(1000,function(res){
-		var xml=feed('rss-bango','subscribe xx',res);
-		response.append('Content-Type','application/xml;charset=utf-8');
-		response.send(xml);
-		bangodb.disConnect();
-	});
-});
+app.use("/feed",feed);
 //定义错误处理
 app.use(function(err, req, res, next) {
   console.error(err);
