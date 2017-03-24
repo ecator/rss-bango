@@ -10,10 +10,14 @@ router.get("/",function(request,response){
 	// 判断请求参数
 	if (request.query.t) {
 		//按标签搜索
+		var tags=request.query.t.split(' ');
 		bangodb.connect();
-			bangodb.searchByTag(request.query.t,"detail",function(res){
-				response.render("index",{query:request.query.t,title:"bango - "+request.query.t,items:res});
-				bangodb.disConnect();
+			bangodb.searchByTag("detail",tags,function(res1){
+				bangodb.searchByTag("detail_mo",tags,function(res2){
+					var res=sortByTime(res1,res2);
+					response.render("index",{query:request.query.t,title:"bango - "+request.query.t,items:res});
+					bangodb.disConnect();
+				});
 			});
 	}else if (request.query.q) {
 		//搜索
