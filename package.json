@@ -4,7 +4,10 @@
   "description": "subscribe xx",
   "main": "server.js",
   "scripts": {
-    "test": "node ./test/test"
+    "test": "node ./test/test",
+    "server":"forever start -p ./ -l ./log/server.log -o ./log/server-out.log -e ./log/server-err.log -a server.js",
+    "spider": "forever start -p ./ -l ./log/spider.log -o ./log/spider-out.log -e ./log/spider-err.log -a spider.js 2 3600 60",
+    "spider-mo": "forever start -p ./ -l ./log/spider-mo.log -o ./log/spider-mo-out.log -e ./log/spider-mo-err.log -a spider.js 2 3600 60 mo"
   },
   "keywords": [
     "rss",

@@ -15,7 +15,9 @@ node spider [maxPageNum pageInterval detailInterval mo]
 
 # others
 
-## forever-server.sh/forever-spider.sh
+```
+npm run server/spider/spider-mo
+```
 run server.js/spider.js using forever as daemon
 
 have a good time :smile:
