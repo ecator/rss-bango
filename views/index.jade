@@ -24,6 +24,9 @@ block body
 						h4=item.title
 							span.small=item.date
 							//标注有码
-							if item.pre
+							if item.pre!=undefined
 								br
 								span.badge mosaic
+							//判断是否有预览图
+							if item.pre
+								span.badge preview
