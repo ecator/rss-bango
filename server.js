@@ -8,6 +8,7 @@ var fs=require('fs');
 var index=require("./routes/index");
 var detail=require("./routes/detail");
 var feed=require("./routes/feed");
+var tags=require("./routes/tags");
 var app=express();
 app.use(express.static('public'));
 app.set("views","./views");
@@ -41,6 +42,8 @@ app.use(function(request,response,next){
 app.use("/",index);
 //番号详情页面
 app.use("/detail",detail);
+//标签页
+app.use("/tags",tags);
 //rss订阅路由
 app.use("/feed",feed);
 //定义错误处理

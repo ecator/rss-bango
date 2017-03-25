@@ -32,8 +32,8 @@ router.get("/",function(request,response){
 		});
 	}else{
 	    bangodb.connect();
-    	bangodb.get(3000,'detail',function(res1){
-    		bangodb.get(3000,"detail_mo",function(res2){
+    	bangodb.get(5000,'detail',function(res1){
+    		bangodb.get(5000,"detail_mo",function(res2){
     			var res=sortByTime(res1,res2);
     			// console.log(res);
     			response.render('index',{query:"",title:"bango",items:res});

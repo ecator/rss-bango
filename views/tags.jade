@@ -1,0 +1,14 @@
+extends layout
+block head
+	link(rel='stylesheet', href='/css/tags.css')
+	script(src="/js/tags.js")
+block body
+	.container
+		.tags
+			each label in labels
+				div.btn.btn-default.btn-sm.tag=label
+		.row
+			.col-sm-6.col-sm-offset-2.col-xs-12
+				button.btn.btn-info.btn-lg.btn-block#search search by tags
+			.col-sm-2.col-sm-offset-0.col-xs-12
+				button.btn.btn-danger.btn-lg.btn-block#reset reset

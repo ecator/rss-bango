@@ -1,0 +1,10 @@
+.tags{
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	/*border: 1px red solid;*/
+}
+.tag{
+	position: relative;
+	margin:1px 1px;
+}

@@ -2,11 +2,15 @@ extends layout
 block head
 	link(rel='stylesheet', href='/css/index.css')
 	script(src="/js/jquery.lazyload.min.js")
-	script(src="/js/indexready.js")
+	script(src="/js/index.js")
 block body
 	//rss按钮
-	.rss#rss1(data-title="bango")
-	.rss#rss2(data-title="bango-mo")
+	button#rss1.rss.button.button-highlight.button-box.button-giant.button-longshadow-right.button-longshadow-expand.button-small(data-title="so")
+		i.fa.fa-rss
+	button#rss2.rss.button.button-action.button-box.button-giant.button-longshadow-left.button-small(data-title="mo")
+		i.fa.fa-rss
+	//tags页面按钮
+	a.button.button-small.button-glow.button-pill.button-circle.button-primary#tag-btn(href='/tags') tags
 	//TOP按钮
 	button#to-top.button-small.button.button-glow.button-circle.button-action.button-jumbo TOP
 	.container
@@ -17,6 +21,11 @@ block body
 				.col-sm-2.col-sm-offset-0.col-xs-12
 					input.btn.btn-default.btn-block#search(type="button",value="search")
 	.waterfall
+		h1.text-center#result
+			unless items.length
+				='NO RESULT'
+			else
+				=items.length + ' RESULTS LOADING...'
 		each item in items
 			.movie-box.thumbnail.hide(data-detail="/detail/#{item.code}")
 					img.lazyload(data-original="#{item.img}",src="/img/loading.gif")
@@ -26,7 +35,7 @@ block body
 							//标注有码
 							if item.pre!=undefined
 								br
-								span.badge mosaic
+								span.label.label-danger mosaic
 							//判断是否有预览图
 							if item.pre
-								span.badge preview
+								span.label.label-primary preview
