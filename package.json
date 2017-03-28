@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "node ./test/test",
-    "server":"forever start -p ./ -l ./log/server.log -o ./log/server-out.log -e ./log/server-err.log -a server.js",
+    "server": "forever start -p ./ -l ./log/server.log -o ./log/server-out.log -e ./log/server-err.log -a server.js",
     "spider": "forever start -p ./ -l ./log/spider.log -o ./log/spider-out.log -e ./log/spider-err.log -a spider.js 2 3600 60",
     "spider-mo": "forever start -p ./ -l ./log/spider-mo.log -o ./log/spider-mo-out.log -e ./log/spider-mo-err.log -a spider.js 2 3600 60 mo"
   },
@@ -27,6 +27,7 @@
     "eventproxy": "^0.3.5",
     "express": "^4.15.2",
     "jade": "^1.11.0",
+    "log4js": "^1.1.1",
     "moment": "^2.17.1",
     "multer": "^1.3.0",
     "mysql": "^2.13.0",

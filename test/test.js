@@ -1,12 +1,10 @@
 'use strict';
 var config=require('config');
 var moment=require("moment");
+var log4js=require('log4js');
+var timer=require('../lib/timer');
 var bangoDB=require('../lib/bangodb');
 var bangodb=new bangoDB();
-bangodb.connect();
-bangodb.getTags(function(res){
-	// console.log(res);
-	console.log(res.length);
-	bangodb.disConnect();
-});
+var logger=log4js.getLogger();
+logger.error({nihao:111});
 // console.log(process.env);

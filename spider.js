@@ -2,7 +2,9 @@
 var eventproxy = require('eventproxy');
 var getContent=require('./lib/getcontent');
 var bangoDB=require('./lib/bangodb');
+var timer=require('./lib/timer');
 var config=require('config');
+var log4js=require('log4js');
 var url=require("url");
 var bangodb=new bangoDB();
 var urlCount=0;	//开始页面计数
@@ -20,19 +22,23 @@ if (params[3]=='mo') {
 	var baseurl=config.get("baseurl_mo");
 	//定义写入数据表名
 	var detail_table="detail_mo";
+	//定义日志
+	var logger=log4js.getLogger('spider-mo');
 }else{
 	//页面基础地址
 	var baseurl=config.get("baseurl");
 	//定义写入数据表名
 	var detail_table="detail";
+	//定义日志
+	var logger=log4js.getLogger('spider');
 }
 bangodb.connect();
 bangodb.getLastPage(baseurl,function(last){
-	console.log("上次抓取到页面："+last);
-	console.log("抓取最大页面："+urlCountMax);
-	console.log("主页面间隔："+intervalPage+"秒");
-	console.log("详情页面间隔："+intervalDetail+"秒");
-	console.log("保存数据表："+detail_table);
+	logger.info("上次抓取到页面："+last);
+	logger.info("抓取最大页面："+urlCountMax);
+	logger.info("主页面间隔："+intervalPage+"秒");
+	logger.info("详情页面间隔："+intervalDetail+"秒");
+	logger.info("保存数据表："+detail_table);
 	urlCount=Number(last);
 	bangodb.disConnect();
 	beginSpider();
@@ -44,7 +50,7 @@ function beginSpider(){
 	urlCount++;
 	getContent(targetUrl,function($){
 	//成功会传递回来一个cheerio对象，可以像jquery一样操作dom
-	console.time(targetUrl+'抓取时间');
+	timer.set(targetUrl+'抓取时间');
 	var movies=[];
 	$(".item").each(function(){
 		var movie={
@@ -59,18 +65,18 @@ function beginSpider(){
 	var ep=new eventproxy();
 	ep.all('spider.end',function(mvs){
 		// console.log(mvs)
-		console.log(targetUrl+'抓取数量：%d',mvs.length);
-		console.timeEnd(targetUrl+'抓取时间');
-		console.time(targetUrl+'写入时间');
+		logger.info(targetUrl+'抓取数量：%d',mvs.length);
+		logger.info(targetUrl+'抓取时间：%s',timer.get(targetUrl+'抓取时间',true));
+		timer.set(targetUrl+'写入时间');
 		//写入数据库
 		bangodb.connect();
 		bangodb.add(mvs,detail_table,function(res){
 			//一次数据抓取流程全部完毕后执行本回调
 			res=res[res.length-1];
-			console.log(targetUrl+"成功：%s",res.success);
-			console.log(targetUrl+"失败：%s",res.fail);
-			console.log(targetUrl+"重复：%s",res.repeat);
-			console.timeEnd(targetUrl+'写入时间');
+			logger.info(targetUrl+"成功：%s",res.success);
+			logger.info(targetUrl+"失败：%s",res.fail);
+			logger.info(targetUrl+"重复：%s",res.repeat);
+			logger.info(targetUrl+'写入时间：%s',timer.get(targetUrl+'写入时间',true));
 			//写入刷新日志
 			bangodb.writeLog(targetUrl,res.success);
 			bangodb.disConnect();

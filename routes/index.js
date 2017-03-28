@@ -3,8 +3,11 @@ var express=require('express');
 var bangoDB=require('../lib/bangodb');
 var moment=require("moment");
 var config=require("config");
+var log4js=require('log4js');
+var timer=require("../lib/timer");
 var router=express.Router();
 var bangodb=new bangoDB();
+var logger=log4js.getLogger('index');
 router.get("/",function(request,response){
 	response.locals.torrentkittyBase=config.get("torrentkittyBase");
 	// 判断请求参数
@@ -46,7 +49,8 @@ router.get("/",function(request,response){
 function sortByTime(arr1,arr2){
 	var length=arr1.length+arr2.length;
 	var re=[];
-	console.time('排序'+length+'个项目');
+	var sortflag='sortflag'+moment().format('x');
+	timer.set(sortflag);
 	for(var i=0,m=0;i<arr1.length || m<arr2.length;){
 		//判断是否超出下标
 		if (!arr1[i]) {
@@ -67,7 +71,7 @@ function sortByTime(arr1,arr2){
 			m++;
 		}
 	}
-	console.timeEnd('排序'+length+'个项目');
+	logger.info('排序'+length+'个项目完毕，耗时：%s',timer.get(sortflag,true));
 	return re;
 
 }
