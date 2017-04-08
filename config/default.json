@@ -9,7 +9,7 @@
   		"database": "bango",
   		"dateStrings":true
 	},
-	"torrentkittyBase":"https://www.torrentkitty.tv/search/",
+	"searchBase":"http://bt.nocode.site/search/",
 	"home":"http://localhost",
 	"port":"1111",
 	"baseurl":"https://avso.pw/ja/page/",

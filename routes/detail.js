@@ -8,7 +8,7 @@ router.get("/:code",function(request,response,next){
     bangodb.connect();
     bangodb.searchByCode(request.params.code,"detail",function(res){
         if (res.length) {
-            response.locals.torrentkittyBase=config.get("torrentkittyBase");
+            response.locals.searchBase=config.get("searchBase");
             response.locals.home=config.get("home");
             response.render('detail',{title:"bango - "+res[0].title,item:res[0]});
             bangodb.disConnect();

@@ -9,7 +9,7 @@ var router=express.Router();
 var bangodb=new bangoDB();
 var logger=log4js.getLogger('index');
 router.get("/",function(request,response){
-	response.locals.torrentkittyBase=config.get("torrentkittyBase");
+	response.locals.searchBase=config.get("searchBase");
 	// 判断请求参数
 	if (request.query.t) {
 		//按标签搜索

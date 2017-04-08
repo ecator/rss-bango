@@ -27,7 +27,7 @@ block body
 					a(href="#{item.url}",target="_blank")=item.url
 				dt download
 				dd
-					a(href="#{torrentkittyBase}#{item.code}",target="_blank") search #{item.code} in torrentkitty
+					a(href="#{searchBase}#{item.code}",target="_blank") search for #{item.code}
 		//判断是否有预览图然后生成预览图
 		if item.pre
 			h4.text-center preview
