@@ -39,7 +39,7 @@ function biuldxml(title,description,items){
 	var body='';
 	//构造item
 	for(var i=0;i<items.length;i++){
-		var des="<h3>"+items[i].title+"</h3><p><a target=\"_blank\" href=\""+items[i].url+"\"><img src=\""+items[i].img+"\" alt=\""+items[i].title+"\"></a></p><p>code:<a href=\""+url.resolve(searchBase,items[i].code)+"/\" target='_blank'>"+items[i].code+"</a></p><p>time:"+items[i].time+"mins</p><p>maker:"+items[i].maker+"</p><p>tags:"+items[i].tag+"</p>";
+		var des="<h3>"+items[i].title+"</h3><p><a target=\"_blank\" href=\""+items[i].url+"\"><img src=\""+items[i].img+"\" alt=\""+items[i].title+"\"></a></p><p>code:<a href=\""+url.resolve(searchBase,items[i].code)+"\" target='_blank'>"+items[i].code+"</a></p><p>time:"+items[i].time+"mins</p><p>maker:"+items[i].maker+"</p><p>tags:"+items[i].tag+"</p>";
 		//判断是否有预览图片，并拼接预览图片
 		if (items[i].pre) {
 			var pres=items[i].pre.split(',');
